@@ -12,8 +12,11 @@ Os requisitos não funcionais especificam características qualitativas do siste
 
 1. Os requisitos deveram ser mensuráveis com o intuito de serem avaliados objetivamente, por meio de testes ou métricas.
     
-    Ex: O tamanho máximo do arquivo de *upload* deverá ser de no máximo 10kb. 
+    Exemplo : O tamanho máximo do arquivo de *upload* deverá ser de no máximo 10kb. 
 
 2. Os requisitos deveram ser descritos de maneira clara e concisa, sem deixar espaço para ambiguidades ou interpretações duplas.
 
-3. Os requisitos devem estar alinhados com o intuito do projeto, se o projeto trata de pets e afins, não faz sentido fazermos um *CRUD* de receitas de bolo, um requisito desse tipo claramente violaria o intuito do projeto.
+3. Cada requisito deve tratar de apenas uma funcionalidade, para que sua implementação e avaliação sejam mais objetivas."
+    Exemplo :
+    Correto : "O sistema deve permitir que o usuário cadastre um pet com nome, idade e espécie."
+    Incorreto : "O sistema deve permitir que o usuário cadastre um pet, registre um agendamento de banho e visualize produtos disponíveis para compra."
