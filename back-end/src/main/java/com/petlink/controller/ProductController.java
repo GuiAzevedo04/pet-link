@@ -38,6 +38,8 @@ public class ProductController {
 
     @DeleteMapping("/{idProduct}")
     public ResponseEntity<String> deleteProduct(@PathVariable Long idProduct){
+        productService.deleteProduct(idProduct);
+
         return ResponseEntity.status(HttpStatus.OK).body("Produto "+ idProduct+ " deletado com sucesso");
 
     }
