@@ -2,18 +2,17 @@ package com.petlink.data.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "product")
-
 public class Product {
     @Id
-    @Column(name = "id_product")
+    @Column(name = "id_product", nullable = false)
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProduct;
