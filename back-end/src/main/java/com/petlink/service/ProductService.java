@@ -28,6 +28,19 @@ public class ProductService {
 
     }
 
+    public ProductResponseDTO getProductById(Long id) {
+        Product product = productRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Produto não encontrado com o ID: " + id)
+        );
+        return toDto(product);
+    }
+
+    public void deleteProduct(Long id) {
+        if (!productRepository.existsById(id)) {
+            throw new RuntimeException("Produto não encontrado com o ID: " + id);
+        }
+        productRepository.deleteById(id);
+    }
 
     private ProductResponseDTO toDto(Product entity){
         ProductResponseDTO product = new ProductResponseDTO();
