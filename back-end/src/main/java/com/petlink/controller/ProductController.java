@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequestMapping("/produto")
-
 @RestController
 public class ProductController {
 
@@ -42,6 +41,12 @@ public class ProductController {
 
         return ResponseEntity.status(HttpStatus.OK).body("Produto "+ idProduct+ " deletado com sucesso");
 
+    }
+
+    @PutMapping("/{idProduct}")
+    public ResponseEntity<?> updateProduct(@PathVariable Long idProduct, @RequestBody ProductResponseDTO productDTO){
+
+        return productService.updateProduct(idProduct, productDTO);
     }
 
 

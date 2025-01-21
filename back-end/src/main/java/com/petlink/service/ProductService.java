@@ -5,6 +5,8 @@ import com.petlink.data.dto.ProductResponseDTO;
 import com.petlink.data.entity.Product;
 import com.petlink.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +34,7 @@ public class ProductService {
         Product product = productRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("Produto não encontrado com o ID: " + id)
         );
+
         return toDto(product);
     }
 
@@ -40,6 +43,34 @@ public class ProductService {
             throw new RuntimeException("Produto não encontrado com o ID: " + id);
         }
         productRepository.deleteById(id);
+    }
+
+    public ResponseEntity<?> updateProduct(Long id, ProductResponseDTO productDto) {
+        Product product = productRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Usuario não encontrado com o ID: " + id)
+        );
+
+        System.out.println(productDto);
+        if(productDto.getName() != null){
+            product.setName(productDto.getName());
+        }
+
+        if(productDto.getPrice() >= 1){
+            product.setPrice(productDto.getPrice());
+        }
+
+        if(productDto.getDescription() != null){
+            product.setDescription(productDto.getDescription());
+        }
+
+        if(productDto.getImageLink() != null){
+            product.setImage_link(productDto.getImageLink());
+        }
+
+        productRepository.save(product);
+
+        return ResponseEntity.status(HttpStatus.OK).body(toDto(product));
+
     }
 
     private ProductResponseDTO toDto(Product entity){
