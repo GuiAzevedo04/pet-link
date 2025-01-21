@@ -1,0 +1,54 @@
+.mainpage{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4%;
+}
+
+.bemvindo-mainpage{
+    width: 50em;
+    margin-bottom: 2%;
+}
+
+.bemvindo-mainpage h1{
+    font-size: 3rem;
+}
+
+.bemvindo-mainpage p{
+    font-size: 1.5rem;
+}
+
+.bemvindo-mainpage img{
+    width: 50rem;
+}
+
+.servicos-mainpage{
+    width: 80vw;
+}
+
+.servicos-mainpage h2{
+    width: 20%;
+    font-size: 2em;
+}
+
+.grid-servicos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.grid-servicos h3{
+    font-size: 1.5em;
+}
+
+.grid-servicos p{
+    font-size: 1.25em;
+    width: 90%;
+}
+
+.grid-servicos img{
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
