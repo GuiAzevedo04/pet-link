@@ -19,26 +19,36 @@
     gap: 3em; /* Espaçamento entre os itens */
   }
 
-.produto{
+.produto-a{
     width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(227, 255, 199);
+    background-color: rgb(224, 255, 175);
     border-radius: 2%;
     padding-top: 5%;
-    padding-bottom: 10%;
-    position: relative;
+    border: 1px black solid;
+    
 }
 
-.produto a{
-    align-items: center;
+.produto-a:hover{
+    background-color: rgb(205, 252, 130);
+}
+
+.produto{
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding-bottom: 20%;
+    position: relative;
 }
 
 .produto img{
     width: 40%;
+    border-radius: 4%;
+    border: 1px black solid;
 }
 
 .produto h3{
@@ -52,7 +62,7 @@
 }
 #preco {
     position: absolute;
-    bottom: 0%; /* Ajuste a distância de acordo com a necessidade */
+    bottom: -0%; /* Ajuste a distância de acordo com a necessidade */
     right: 5%;  /* Coloca o preço no lado direito */
     font-weight: bold;
     font-size: 1.2em;
