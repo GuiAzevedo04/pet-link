@@ -10,6 +10,8 @@ import Footer from './components/Footer/Footer'
 import MainPage from './pages/MainPage/MainPage'
 import BanhoTosa from './pages/BanhoTosa/BanhoTosa';
 import Produtos from './pages/Produtos/Produtos';
+import Carrinho from './pages/Carrinho/Carrinho';
+import ProdutosDetalhes from './pages/ProdutosDetalhes/ProdutosDetalhes';
 
 
 
@@ -20,7 +22,9 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/banho-tosa" element={<BanhoTosa />} />
+        <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/produtos" element={<Produtos />} />
+        <Route path="/produtos/:id" element={<ProdutosDetalhes />} />
       </Routes>
       <Footer />
     </Router>

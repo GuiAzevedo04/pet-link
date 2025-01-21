@@ -6,12 +6,17 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 7%;
+    height: 6em;
     background-color: #D2FD46;
 }
 
-.logo-pet-link{
+.header a{
     width: 11%;
+    padding-left: 3%;
+}
+
+.logo-pet-link{
+    width: 100%;
     padding-left: 3%;
 }
 
