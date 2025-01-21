@@ -1,9 +1,12 @@
 package com.petlink.controller;
 
 import com.petlink.data.dto.UserResponseDTO;
+import com.petlink.data.entity.User;
+import com.petlink.infra.Security.TokenService;
 import com.petlink.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,14 +25,17 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid UserResponseDTO userResponseDTO){
-        System.out.println(userResponseDTO);
         var emailPassword = new UsernamePasswordAuthenticationToken(userResponseDTO.getEmail(), userResponseDTO.getPassword());
-        System.out.println(emailPassword.getDetails());
         var auth = this.authenticationManager.authenticate(emailPassword);
 
-        return ResponseEntity.ok().body(auth.getDetails());
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.status(HttpStatus.OK).body(token);
     }
 
     @PostMapping("/register")
