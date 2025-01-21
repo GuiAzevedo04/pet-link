@@ -2,6 +2,7 @@ package com.petlink.service;
 
 import com.petlink.data.entity.Schedules;
 import com.petlink.repository.SchedulesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 @Service
 public class SchedulesService {
 
+    @Autowired
     private final SchedulesRepository schedulesRepository;
 
     public SchedulesService(SchedulesRepository schedulesRepository) {
@@ -39,7 +41,7 @@ public class SchedulesService {
 
     //DELETE BY ID
     public void deleteById(Long id){
-        schedulesRepository.deletById(Id);
+        schedulesRepository.deleteById(id);
     }
 
     //UPDATE
@@ -51,7 +53,7 @@ public class SchedulesService {
             updatedSchedule.setPetName(schedules.getPetName());
             updatedSchedule.setTimeOfSchedule(schedules.getTimeOfSchedule());
             updatedSchedule.setStatus(schedules.getStatus());
-            updatedSchedule.save(updatedSchedule);
+            schedulesRepository.save(updatedSchedule);
         } else {
             throw new IllegalStateException("Schedule not found");
         }
