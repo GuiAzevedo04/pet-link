@@ -1,0 +1,33 @@
+.Footer{
+    width: 100vw;
+    height: 28vh;
+    background-color: #D2FD46;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.infos-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.petlink-footer{
+    margin-top: 30%;
+}
+
+.grid-redes{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    width: 200%;
+    margin-bottom: 40%;
+}
+
+.grid-redes img{
+    width: 70%;
+}
