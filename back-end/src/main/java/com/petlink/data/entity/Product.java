@@ -1,6 +1,5 @@
 package com.petlink.data.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,24 +10,23 @@ import lombok.*;
 @Table(name = "product")
 public class Product {
     @Id
-    @Column(name = "id_product", nullable = false)
+    @Column(name = "id_product", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProduct;
 
-
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private double price;
 
-    @Column(name = "amount")
+    @Column(name = "amount", nullable = false)
     private int amount;
 
-    @Column(name = "image_link")
+    @Column(name = "image_link", nullable = false)
     private String image_link;
 
 }
