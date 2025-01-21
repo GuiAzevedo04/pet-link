@@ -1,0 +1,120 @@
+.agendamento{
+    display: flex;
+    flex-direction: column;
+    background-color: #D2FD46;
+    margin-bottom: 3%;
+    width: 78%;
+    border-radius: 2%;
+    border: 1px black solid;
+    
+}
+
+.form-agendamento{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+}
+
+.input-text-form {
+    width: 100%; /* Faz o input ocupar toda a largura do container */
+    padding: 10px 15px; /* Adiciona espaçamento interno */
+    margin-bottom: 15px; /* Espaçamento entre os campos */
+    font-size: 1rem; /* Tamanho da fonte */
+    border: 1px solid #ccc; /* Borda leve e cinza */
+    border-radius: 5px; /* Bordas arredondadas */
+    outline: none; /* Remove a borda azul padrão */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: all 0.3s ease; /* Transição suave para interações */
+}
+
+.form-agendamento textarea,
+.form-agendamento select {
+    width: 100%; /* Faz o campo ocupar toda a largura disponível */
+    padding: 10px 15px; /* Adiciona espaçamento interno */
+    margin-bottom: 15px; /* Espaçamento entre os campos */
+    font-size: 1rem; /* Tamanho da fonte */
+    border: 1px solid #ccc; /* Borda leve e cinza */
+    border-radius: 5px; /* Bordas levemente arredondadas */
+    background-color: #fff; /* Fundo branco */
+    color: #333; /* Cor do texto */
+    outline: none; /* Remove o contorno padrão */
+}
+
+.form-agendamento textarea {
+    resize: vertical; 
+    height: 100px; 
+}
+
+.form-agendamento select {
+    cursor: pointer;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre o checkbox e o texto */
+    font-size: 1rem;
+    color: black;
+}
+
+.checkbox-group input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%; /* Para deixá-los redondos */
+    cursor: pointer;
+    position: relative;
+    outline: none;
+}
+
+.checkbox-group input[type="radio"]:checked {
+    border-color: #0a4e0c;
+    background-color: black;
+}
+
+.checkbox-group input[type="radio"]::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Esconde o círculo interno */
+}
+
+.checkbox-group input[type="radio"]:checked::after {
+    display: block; /* Mostra o círculo interno ao selecionar */
+}
+
+.form-agendamento button {
+    width: 100%;
+    border: 0;
+    background-color: black;
+    color: white;
+    font-size: 1.25em;
+    padding: 1.2%;
+    margin-top: 3%;
+    cursor: pointer;
+}
+
+.form-agendamento .MuiInputBase-root {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+
