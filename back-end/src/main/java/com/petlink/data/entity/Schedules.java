@@ -2,28 +2,22 @@ package com.petlink.data.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import java.sql.Time;
 import java.util.Date;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="Schedules")
 public class Schedules {
 
     @Id
-    @SequenceGenerator(
-            name = "schedules_sequence_generator",
-            sequenceName = "schedules",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "schedules_sequence_generator"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_schedules", updatable = false, nullable = false)
     private Long idSchedule;
 
