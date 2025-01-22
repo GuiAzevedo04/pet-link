@@ -46,6 +46,12 @@ public class UserService implements UserDetailsService {
 
     }
 
+    public User getUserById(Long id){
+
+        return userRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Usuario não encontrado com o ID: " + id));
+    }
+
     public ResponseEntity<?> updateUser(Long id, UserResponseDTO userDto){
         User user = userRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("Usuario não encontrado com o ID: " + id)
@@ -70,21 +76,6 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username);
-    }
-
-
-    private UserResponseDTO toDto(User entity) {
-        UserResponseDTO user = new UserResponseDTO();
-        user.setIdUser(entity.getId_user());
-        user.setName(entity.getName());
-        user.setPassword(entity.getPassword());
-        user.setEmail(entity.getEmail());
-        user.setCpf(entity.getCpf());
-        user.setPhone(entity.getPhone());
-        user.setAdress(entity.getAdress());
-        user.setRole(entity.getRole());
-
-        return user;
     }
 
     private User toEntity(UserResponseDTO dto, String hashPassword) {
