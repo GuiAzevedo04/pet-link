@@ -1,22 +1,29 @@
 package com.petlink.controller;
 
+import com.petlink.data.dto.SchedulesResponseDTO;
 import com.petlink.data.entity.Schedules;
+import com.petlink.data.entity.User;
+import com.petlink.repository.SchedulesRepository;
 import com.petlink.service.SchedulesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("agendamentos")
+@RequestMapping("/agendamentos")
 public class SchedulesController {
 
     private final SchedulesService schedulesService;
+    private final SchedulesRepository schedulesRepository;
 
-    public SchedulesController(SchedulesService schedulesService) {
+    public SchedulesController(SchedulesService schedulesService,
+                               SchedulesRepository schedulesRepository) {
         this.schedulesService = schedulesService;
+        this.schedulesRepository = schedulesRepository;
     }
 
     // GET ALL SCHEDULES
@@ -28,16 +35,18 @@ public class SchedulesController {
 
     // GET SCHEDULE BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<Schedules> getScheduleById(@PathVariable Long id) {
-        return schedulesService.getSchedules(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> getScheduleById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(schedulesService.getSchedules(id));
     }
 
     // POST (ADD NEW SCHEDULE)
     @PostMapping
-    public ResponseEntity<String> addSchedule(@RequestBody Schedules schedules) {
-        schedulesService.addSchedules(schedules);
+    public ResponseEntity<String> addSchedule(@RequestBody SchedulesResponseDTO schedulesDTO) {
+        System.out.println(schedulesDTO);
+
+        User userLogged = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        schedulesService.addSchedules(schedulesDTO, userLogged.getId_user());
         return ResponseEntity.status(HttpStatus.CREATED).body("Schedule added successfully!");
     }
 
