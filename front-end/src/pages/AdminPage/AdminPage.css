@@ -1,0 +1,81 @@
+.adm-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
+
+.adm-page-content{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cabecalho-produtos-adm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 2%;
+}
+
+.cabecalho-produtos-adm button{
+    border: 1px black solid;
+    border-radius: 3rem;
+    background-color: #D2FD46;
+    color: black;
+    font-size: 1em;
+    padding: 1.2%;
+    margin-top: 3%;
+    cursor: pointer;
+}
+
+.produtos-grid-adm{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+.produto-adm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 1%;
+    margin-bottom: 1%;
+    border-bottom: 1px black solid;
+}
+
+.produto-adm img{
+    width: 10%;
+    padding-right: 2%;
+
+}
+
+.content-produto-adm{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.nomePreco-produto-adm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: 600;
+}
+
+.opcoes-produto-adm{
+    display: flex;
+    flex-direction: row;
+    width: 6%;
+    justify-content: space-between;
+}
+
+
+

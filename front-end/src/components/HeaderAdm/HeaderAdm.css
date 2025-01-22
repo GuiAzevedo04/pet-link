@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital@0;1&display=swap');
 
-.header{
+.header-adm{
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -10,40 +10,23 @@
     background-color: #D2FD46;
 }
 
-.header a{
-    width: 11%;
-    padding-left: 3%;
-}
-
 .logo-pet-link{
     width: 100%;
     padding-left: 3%;
 }
 
-.opcoes-header{
+.opcoes-header-adm{
     margin-right: 7%;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.a-header{
-    color: black;
-    text-decoration: none;
-    font-weight: 600;
-    margin-right: 3rem;
-    font-size: 1.25rem;
-}
-
-.a-header:hover {
-    text-decoration: underline;
-}
-
-.butao-header{
+.butao-header-adm{
     color: white;
     border-radius: 8%;
     background-color: black;
-    padding: 3% 5%;
+    padding: 15% 90%;
     font-size: 1rem;
     cursor: pointer;
 }
