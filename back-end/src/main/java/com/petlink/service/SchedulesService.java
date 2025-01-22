@@ -35,8 +35,8 @@ public class SchedulesService {
     }
 
     //GET ALL
-    public List<Schedules> getAllSchedules(){
-        return schedulesRepository.findAll();
+    public List<SchedulesResponseDTO> getAllSchedules(){
+        return schedulesRepository.findAll().stream().map(this::toDto).collect(Collectors.toList());
     }
 
     //GET BY ID
@@ -57,6 +57,7 @@ public class SchedulesService {
                 .orElseThrow(() -> new RuntimeException("Service not found for id: " + scheduleDTO.getIdSchedules()));
         newSchedule.setServices(service);
         newSchedule.setStatus(scheduleDTO.getStatus());
+        newSchedule.setDescription(scheduleDTO.getDescription());
 
         schedulesRepository.save(newSchedule);
     }
@@ -106,6 +107,7 @@ public class SchedulesService {
         schedule.setPetName(entity.getPetName());
         schedule.setStatus(entity.getStatus());
         schedule.setServiceId(entity.getServices().getIdService());
+        schedule.setDescription(entity.getDescription());
         UserResponseDTO user = new UserResponseDTO(entity.getId_user());
 
         schedule.setUser(user);

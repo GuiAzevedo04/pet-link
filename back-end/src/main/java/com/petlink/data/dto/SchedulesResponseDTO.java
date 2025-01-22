@@ -16,4 +16,5 @@ public class SchedulesResponseDTO {
     private String status;
     private Long serviceId;
     private UserResponseDTO user;
+    private String description;
 }

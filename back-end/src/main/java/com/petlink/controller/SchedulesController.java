@@ -33,9 +33,9 @@ public class SchedulesController {
 
     // GET ALL SCHEDULES
     @GetMapping
-    public ResponseEntity<List<Schedules>> getAllSchedules() {
-        List<Schedules> schedules = schedulesService.getAllSchedules();
-        return ResponseEntity.ok(schedules);
+    public ResponseEntity<?> getAllSchedules() {
+        List<SchedulesResponseDTO> schedules = schedulesService.getAllSchedules();
+        return ResponseEntity.ok().body(schedules);
     }
 
     // GET SCHEDULE BY ID
