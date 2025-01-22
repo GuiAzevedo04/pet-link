@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,7 +27,6 @@ public class Services {
     @Column(nullable = false, name = "service_description")
     private String serviceDescription;
 
-    @NotBlank
     @Column(nullable = false, name = "price")
     private Float price;
 

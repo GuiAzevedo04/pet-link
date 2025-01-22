@@ -29,7 +29,6 @@ public class Schedules {
     @Column(nullable = false, name = "pet_name")
     private String petName;
 
-    @NotBlank
     @Column(nullable = false, name = "time_of_schedule")
     private Time timeOfSchedule;
 
