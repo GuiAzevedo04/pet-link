@@ -18,15 +18,15 @@ public class Services {
     private Long idService;
 
     @NotBlank
-    @Column(nullable = false, name = "pet_name")
+    @Column(nullable = false, name = "client_name")
     private String clientName;
 
     @NotBlank
-    @Column(nullable = false, name = "pet_name")
+    @Column(nullable = false, name = "service_description")
     private String serviceDescription;
 
     @NotBlank
-    @Column(nullable = false, name = "schedule_date")
+    @Column(nullable = false, name = "price")
     private Float price;
 
 }
