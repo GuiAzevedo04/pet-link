@@ -68,4 +68,9 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "É preciso estar autenticado."));
         }
     }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getUserById(@PathVariable Long userId){
+        return ResponseEntity.ok().body(userService.getUserById(userId));
+    }
 }
