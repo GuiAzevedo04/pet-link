@@ -12,6 +12,7 @@ import BanhoTosa from './pages/BanhoTosa/BanhoTosa';
 import Produtos from './pages/Produtos/Produtos';
 import Carrinho from './pages/Carrinho/Carrinho';
 import ProdutosDetalhes from './pages/ProdutosDetalhes/ProdutosDetalhes';
+import AdminPage from './pages/AdminPage/AdminPage';
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/produtos" element={<Produtos />} />
         <Route path="/produtos/:id" element={<ProdutosDetalhes />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Footer />
     </Router>

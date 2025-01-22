@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://e3ho1fc6vuh8.share.zrok.io',
+        target: 'https://bswjq3venjr7.share.zrok.io/',
         changeOrigin: true,
         secure: false, // Ignorar problemas de SSL, se aplicável
         rewrite: (path) => path.replace(/^\/api/, ''), // Remove o prefixo "/api"
