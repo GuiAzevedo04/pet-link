@@ -4,7 +4,6 @@ import com.petlink.data.entity.Services;
 import com.petlink.repository.ServicesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,7 @@ public class ServicesService {
     }
 
     //GET BY ID
-    public Optional<Services> getServices(@PathVariable Long id){
+    public Optional<Services> getServices(Long id){
         return servicesRepository.findById(id);
     }
 
