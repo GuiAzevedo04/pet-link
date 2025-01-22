@@ -25,4 +25,8 @@ public class UserResponseDTO {
         this.adress = user.getAdress();
         this.role = user.getRole();
     }
+    public UserResponseDTO() {
+    }
+
+
 }
