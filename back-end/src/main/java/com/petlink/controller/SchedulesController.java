@@ -6,12 +6,17 @@ import com.petlink.data.entity.User;
 import com.petlink.repository.SchedulesRepository;
 import com.petlink.service.SchedulesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/agendamentos")
@@ -42,7 +47,6 @@ public class SchedulesController {
     // POST (ADD NEW SCHEDULE)
     @PostMapping
     public ResponseEntity<String> addSchedule(@RequestBody SchedulesResponseDTO schedulesDTO) {
-        System.out.println(schedulesDTO);
 
         User userLogged = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -62,6 +66,22 @@ public class SchedulesController {
     public ResponseEntity<String> deleteScheduleById(@PathVariable Long id) {
         schedulesService.deleteById(id);
         return ResponseEntity.ok("Schedule with ID " + id + " has been deleted!");
+    }
+
+    @GetMapping("/horarios-disponiveis")
+    public ResponseEntity<?> getAvaliableTimes(@RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate date){
+        List<Time> horariosPossiveis = Arrays.asList(
+                Time.valueOf("08:00:00"), Time.valueOf("09:00:00"),
+                Time.valueOf("10:00:00"), Time.valueOf("11:00:00"),
+                Time.valueOf("12:00:00"), Time.valueOf("13:00:00"),
+                Time.valueOf("14:00:00"), Time.valueOf("15:00:00"),
+                Time.valueOf("16:00:00"), Time.valueOf("17:00:00"),
+                Time.valueOf("18:00:00")
+        );
+
+        List<Time> horariosDisponiveis = schedulesService.getAvaliableTimes(date, horariosPossiveis);
+
+        return ResponseEntity.ok().body(Map.of("avaliableTimes",horariosDisponiveis));
     }
 
     // UPDATE SCHEDULE

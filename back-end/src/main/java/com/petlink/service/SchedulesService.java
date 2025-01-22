@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SchedulesService {
@@ -81,6 +84,18 @@ public class SchedulesService {
         } else {
             throw new IllegalStateException("Schedule not found");
         }
+    }
+
+
+    public List<Time> getAvaliableTimes(LocalDate date, List<Time> horariosPossiveis){
+
+        List<Time> reservedTimes = schedulesRepository.findByScheduleDate(date);
+
+        List<Time> horariosDisponiveis = horariosPossiveis.stream()
+                .filter(time -> !reservedTimes.contains(time))
+                .collect(Collectors.toList());
+
+        return horariosDisponiveis;
     }
 
     private SchedulesResponseDTO toDto(Schedules entity) {
