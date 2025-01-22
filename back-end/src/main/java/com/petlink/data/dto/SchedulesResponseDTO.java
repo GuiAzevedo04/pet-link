@@ -1,5 +1,6 @@
 package com.petlink.data.dto;
 
+import com.petlink.data.entity.User;
 import lombok.Data;
 
 import java.sql.Time;
@@ -12,4 +13,6 @@ public class SchedulesResponseDTO {
     private String petName;
     private Time timeOfSchedule;
     private String status;
+    private Long serviceId;
+    private UserResponseDTO user;
 }
