@@ -35,9 +35,11 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.GET, "/agendamentos/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/agendamentos/").permitAll()
                         .requestMatchers(HttpMethod.GET, "/produto/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/produto/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/produto/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/produto/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/produto/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/services/**").hasRole("ADMIN")
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

@@ -2,6 +2,7 @@ package com.petlink.controller;
 
 import com.petlink.data.dto.UserResponseDTO;
 import com.petlink.data.entity.User;
+import com.petlink.data.entity.UserRole;
 import com.petlink.infra.Security.TokenService;
 import com.petlink.service.UserService;
 import jakarta.validation.Valid;
@@ -50,6 +51,10 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserResponseDTO userResponseDTO){
+
+        if(userResponseDTO.getRole() == null) {
+            userResponseDTO.setRole(UserRole.USER);
+        }
         return userService.register(userResponseDTO);
     }
 
