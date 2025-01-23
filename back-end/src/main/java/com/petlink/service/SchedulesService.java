@@ -108,6 +108,7 @@ public class SchedulesService {
         schedule.setStatus(entity.getStatus());
         schedule.setServiceId(entity.getServices().getIdService());
         schedule.setDescription(entity.getDescription());
+        schedule.setServiceName(entity.getServices().getClientName());
         UserResponseDTO user = new UserResponseDTO(entity.getId_user());
 
         schedule.setUser(user);
