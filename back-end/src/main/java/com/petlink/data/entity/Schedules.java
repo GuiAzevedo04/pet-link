@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -23,13 +24,12 @@ public class Schedules {
 
     @NotBlank
     @Column(nullable = false, name = "schedule_date")
-    private Date scheduleDate;
+    private LocalDate scheduleDate;
 
     @NotBlank
     @Column(nullable = false, name = "pet_name")
     private String petName;
 
-    @NotBlank
     @Column(nullable = false, name = "time_of_schedule")
     private Time timeOfSchedule;
 

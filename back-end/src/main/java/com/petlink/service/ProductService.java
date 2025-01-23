@@ -46,10 +46,9 @@ public class ProductService {
 
     public ResponseEntity<?> updateProduct(Long id, ProductResponseDTO productDto) {
         Product product = productRepository.findById(id).orElseThrow(() ->
-                new RuntimeException("Usuario não encontrado com o ID: " + id)
+                new RuntimeException("Produto não encontrado com o ID: " + id)
         );
 
-        System.out.println(productDto);
         if(productDto.getName() != null){
             product.setName(productDto.getName());
         }
