@@ -1,5 +1,6 @@
 package com.petlink.controller;
 
+import com.petlink.data.dto.ServiceResponseDTO;
 import com.petlink.data.entity.Services;
 import com.petlink.service.ServicesService;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +58,7 @@ public class ServicesController {
     @PutMapping("/{id}")
     public ResponseEntity<String> updateService(
             @PathVariable Long id,
-            @RequestBody Services service) {
+            @RequestBody ServiceResponseDTO service) {
         try {
             servicesService.updateService(service, id);
             return ResponseEntity.ok("Service updated successfully!");
