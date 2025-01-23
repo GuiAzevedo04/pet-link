@@ -11,6 +11,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
+
 @Service
 public class CartService {
 
@@ -72,7 +74,14 @@ public class CartService {
         Cart cart = cartRepository.findByUser(user)
                 .orElseThrow(() -> new EntityNotFoundException("Cart not found"));
 
-        cart.getItems().removeIf(item -> item.getProduct().getIdProduct().equals(productId));
+        Iterator<CartItem> iterator = cart.getItems().iterator();
+        while (iterator.hasNext()) {
+            CartItem item = iterator.next();
+            if (item.getProduct().getIdProduct().equals(productId)) {
+                iterator.remove();
+                break;
+            }
+        }
 
         Cart updatedCart = cartRepository.save(cart);
         return new CartResponseDTO(updatedCart);
