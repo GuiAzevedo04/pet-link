@@ -18,7 +18,6 @@ public class CartController {
     @PostMapping("/add")
     public ResponseEntity<?> addItemToCart(@RequestParam Long productId, @RequestParam int quantity) {
 
-            System.out.println("CHEGOU A REQUISIÇÃO");
             User userLogged = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
             CartResponseDTO cart = cartService.addItemToCart(userLogged.getId_user(), productId, quantity);
