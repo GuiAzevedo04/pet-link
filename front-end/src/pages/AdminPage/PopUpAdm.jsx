@@ -70,6 +70,15 @@ const PopUpAdm = ({
               margin="normal"
               sx={{ bgcolor: 'white' }}
             />
+            <TextField
+              fullWidth
+              label="Quantidade"
+              name="amount"
+              value={novoProduto.amount}
+              onChange={handleChange}
+              margin="normal"
+              sx={{ bgcolor: 'white' }}
+            />
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
               <Button onClick={handleFecharModal} style={{ marginRight: 8 }} sx={{ bgcolor: 'red', color: 'white' }}>Cancelar</Button>
               <Button variant="contained" color="primary" onClick={handleAdicionarProduto} sx={{ bgcolor: 'black' }}>Adicionar</Button>

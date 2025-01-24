@@ -24,6 +24,22 @@ const ProdutosDetalhes = () => {
         fetchProduto();
     }, [id]);
 
+    const fetchAddProduto = async () => {
+      try {
+        const token = localStorage.getItem('authToken');
+        console.log("OLHA O ID", id)
+        const response = await axios.post(`/api/carrinho/add?productId=${id}&quantity=1`, {}, {
+          headers:{
+            "skip_zrok_interstitial"  : "true",
+            "Authorization": `Bearer ${token}`,
+          }
+      });
+        console.log("Produto adicionado ao carrinho:", response.data)
+      } catch (err){
+        console.error("Erro ao adicionar produto ao carrinho: ", err)
+      }
+    }
+
     if(!produto){
         return <p className='tela-carregamento'>Carregando...</p>
     }
@@ -35,7 +51,7 @@ const ProdutosDetalhes = () => {
         <h1>{produto.name}</h1>
         <p id='preco-produto-detalhes'> R$ {produto.price}</p>
         <p>{produto.description}</p>
-        <button>Adicionar ao carrinho</button>
+        <button onClick={fetchAddProduto}>Adicionar ao carrinho</button>
       </div>
     </div>
   )
