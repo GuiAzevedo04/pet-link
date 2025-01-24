@@ -8,14 +8,37 @@ import PopUpAdm from './PopUpAdm';
 
 const AdminPage = () => {
   const [produtos, setProdutos] = useState([]);
+  const [horarios, setHorarios] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
   const [modalAberto, setModalAberto] = useState(null); // null, 'adicionar', 'editar', 'deletar'
   const [produtoSelecionado, setProdutoSelecionado] = useState(null); 
   const [novoProduto, setNovoProduto] = useState({
     name: '',
     price: '',
     imageLink: '',
+    amount: '',
   });
+
+  const fetchAdmin = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      const response = await axios.get(`/api/cliente/profile`, {
+        headers: {
+          "skip_zrok_interstitial": "true",
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+      const userRole = response.data.role;
+      setUser(userRole);
+    } catch (err) {
+      console.error("Erro ao solicitar o nome:", err);
+    }
+  }; 
+
+    if (user != 'ADMIN' ) {
+    return <h1>Você não tem permissão para acessar esta página.</h1>;
+  }
 
   useEffect(() => {
     const fetchProdutos = async () => {
@@ -27,14 +50,23 @@ const AdminPage = () => {
         });
         console.log('Conteúdo do GET:', response.data);
         setProdutos(response.data);
+
+        const horariosResponse = await axios.get('/api/agendamentos', {
+          headers: {
+            "skip_zrok_interstitial": "true",
+          },
+        });
+        console.log('Conteúdo do GET:', horariosResponse.data);
+        setHorarios(horariosResponse.data);
       } catch (err) {
-        console.error('Erro ao buscar os produtos:', err);
+        console.error('Erro ao buscar os horários:', err);
       } finally {
         setLoading(false);
       }
     };
 
     fetchProdutos();
+    fetchAdmin();
   }, []);
 
   const handleChange = (e) => {
@@ -117,7 +149,6 @@ const AdminPage = () => {
 
   return (
     <div className='adm-page'>
-      <HeaderAdm />
       <div className='adm-page-content'>
         <h1>Admin</h1>
         <div className='cabecalho-produtos-adm'>
@@ -140,6 +171,28 @@ const AdminPage = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className='agenda-adm'>
+          <div className='agenda-adm-titulo'><h2>Agenda</h2></div>
+          <div className='marcacoes'>
+            {horarios.map((horario, index) => (
+              <div key={index} className='horario'>
+                <div className='datahorario'>
+                  <p>{horario.scheduleDate}</p>
+                  <p>{horario.timeOfSchedule}</p>
+                </div>
+                <p>{horario.serviceName}</p>
+                <div >
+                  <p>{horario.petName}</p>
+                  <div className='edit-delete-agenda'>
+                    <a href="#" onClick={() => handleAbrirModal('editar', produto)}><EditIcon /></a>
+                    <a href="#" onClick={() => handleAbrirModal('deletar', produto)}><DeleteIcon /></a>
+                  </div>
+    
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
