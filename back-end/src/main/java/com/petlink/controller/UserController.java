@@ -45,7 +45,7 @@ public class UserController {
         }
 
         catch (Exception exception){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Aconteceu um erro ao tentar realizar o login"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Aconteceu um erro ao tentar realizar o login"));
         }
     }
 
