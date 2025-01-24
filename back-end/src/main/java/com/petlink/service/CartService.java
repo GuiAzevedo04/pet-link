@@ -11,6 +11,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 @Service
@@ -30,12 +31,12 @@ public class CartService {
         return cartRepository.findByUser(user).orElseGet(() -> {
             Cart novoCarrinho = new Cart();
             novoCarrinho.setUser(user);
+            novoCarrinho.setItems(new ArrayList<>());
             return cartRepository.save(novoCarrinho);
         });
     }
 
     public CartResponseDTO addItemToCart(Long userId, Long productId, Integer quantity) {
-        System.out.println("oi");
 
         Cart cart = getCartOrCreate(userId);
         Product product = productRepository.findById(productId)
@@ -54,12 +55,10 @@ public class CartService {
 
             product.setAmount(product.getAmount()-quantity);
             newItem.setQuantity(quantity);
-
             newItem.setCart(cart);
-            cart.getItems().add(newItem);
-//        }
 
-//        cart.calculateTotalPrice();
+            cart.getItems().add(newItem);
+
         productRepository.save(product);
         return new CartResponseDTO(cartRepository.save(cart));
 
