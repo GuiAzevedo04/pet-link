@@ -51,7 +51,7 @@ public class SchedulesService {
         Schedules newSchedule = new Schedules();
         newSchedule.setScheduleDate(scheduleDTO.getScheduleDate());
         newSchedule.setTimeOfSchedule(scheduleDTO.getTimeOfSchedule());
-        newSchedule.setId_user(userService.getUserById(user));
+        newSchedule.setUser(userService.getUserById(user));
         newSchedule.setPetName(scheduleDTO.getPetName());
         Services service = servicesRepository.findById(scheduleDTO.getServiceId())
                 .orElseThrow(() -> new RuntimeException("Service not found for id: " + scheduleDTO.getIdSchedules()));
@@ -109,11 +109,16 @@ public class SchedulesService {
         schedule.setServiceId(entity.getServices().getIdService());
         schedule.setDescription(entity.getDescription());
         schedule.setServiceName(entity.getServices().getClientName());
-        UserResponseDTO user = new UserResponseDTO(entity.getId_user());
+        UserResponseDTO user = new UserResponseDTO(entity.getUser());
 
         schedule.setUser(user);
 
         return schedule;
     }
 
+    public List<SchedulesResponseDTO> getSchedulesUser(User user) {
+        List<Schedules> schedulesUser = schedulesRepository.findAllByUser(user);
+
+        return schedulesUser.stream().map(this::toDto).collect(Collectors.toList());
+    }
 }
