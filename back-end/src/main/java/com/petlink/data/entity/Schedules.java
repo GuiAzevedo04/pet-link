@@ -22,7 +22,10 @@ public class Schedules {
     @Column(name = "id_schedules", updatable = false, nullable = false)
     private Long idSchedule;
 
-    @NotBlank
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    private User user;
+
     @Column(nullable = false, name = "schedule_date")
     private LocalDate scheduleDate;
 
@@ -36,5 +39,13 @@ public class Schedules {
     @NotBlank
     @Column(nullable = false, name = "status")
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "id_services")
+    private Services services;
+
+
+    @Column(name = "description")
+    private String description;
 
 }
