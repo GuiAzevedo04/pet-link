@@ -36,3 +36,32 @@ Spring Boot Java - v3.3.1
 
 
 PostgreSQL - v17.2
+
+# 📁 Estrutura de Pastas
+
+```
+.
+├── Padroes Adotados/       (Documentaçãoe e especificações do projeto)
+├── back-end/               (Back-end do projeto)
+│   └── src/
+│       └── main/
+│           ├── java/com/
+│           │   ├── controller/ (Pasta com controllers e rotas)
+│           │   ├── data/
+│           │   │   ├── entity  (Entidades da aplicação)
+│           │   │   └── dto     (Pasta com Data transfer objects)
+│           │   ├── infra/      (Pasta que envolve arquivos reponsaveis pela Autenticação)
+│           │   ├── repository/ (Pasta com repositories da aplicação)
+│           │   ├── service/    (Pasta com services da aplicação)
+│           │   └── PetlinkApplication.java (Arquivo responsável por inicializar aplicação)
+│           ├── resources/
+│           │   └── application.properties  (Arquivo de configuração)
+│           └── test/
+└── front-end/              (Frond-end do projeto)
+    └── src/
+        ├── assets/         (Contém imagens utilizadas)
+        ├── components/     (Componentes utilizados em páginas)
+        ├── pages/          (Páginas da aplicação)
+        ├── App.jsx
+        └── App.css
+```
