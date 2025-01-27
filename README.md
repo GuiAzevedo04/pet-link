@@ -65,3 +65,32 @@ PostgreSQL - v17.2
         ├── App.jsx
         └── App.css
 ```
+
+# 📕 Regras e Padrões de Uso do Git
+
+Os commits devem utilizar um padrão objetivo e direto, deixando a linha do tempo do projeto mais estruturada e de fácil entendimento.
+
+## Commits
+
+- Padrão utilizado:
+  <Mudança feita>...<O que sofreu alteração>
+
+  Exemplo : Atualizando ScheduleController Cadastrar agendamento
+
+## Branches
+- **`main`**: Branch principal do projeto
+- **`back-end`**: Branch dedicada ao desenvolvimento de funcionalidades relacionadas ao back-end.  
+- **`front-end`**: Branch dedicada ao desenvolvimento de funcionalidades relacionadas ao front-end.  
+
+## Criação de Branches  
+- Para novas funcionalidades ou correções, crie branches a partir das branches `back-end` ou `front-end`
+- Utilize o padrão de nomenclatura separando palavras por hífen. Exemplos:  
+  - `back-end/User-Auth`  
+  - `front-end/User-Page`
+
+## 3. Merge com a Branch `main`  
+- O merge das branches `back-end` e `front-end` com a branch `main` só deve ser realizado após:  
+  - Conclusão de testes com todas funcionalidades 
+  - Verificação da corretude das funcionalidades desenvolvidas.  
+- Evite merges diretos na `main`. Utilize pull requests
+
