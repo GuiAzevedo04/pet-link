@@ -1,6 +1,7 @@
 package com.petlink.repository;
 
 import com.petlink.data.entity.Schedules;
+import com.petlink.data.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,5 +17,7 @@ public interface SchedulesRepository extends JpaRepository<Schedules, Long> {
 
     @Query("SELECT s.timeOfSchedule FROM Schedules s WHERE s.scheduleDate = :date")
     List<Time> findByScheduleDate(@Param("date") LocalDate scheduleDate);
+
+    List<Schedules> findAllByUser(User user);
 
 }

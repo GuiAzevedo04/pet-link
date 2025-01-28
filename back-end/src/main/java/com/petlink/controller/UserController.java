@@ -45,7 +45,7 @@ public class UserController {
         }
 
         catch (Exception exception){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Aconteceu um erro ao tentar realizar o login"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Aconteceu um erro ao tentar realizar o login"));
         }
     }
 
@@ -72,6 +72,12 @@ public class UserController {
         catch (Exception exception){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "É preciso estar autenticado."));
         }
+    }
+    @PutMapping("/profile")
+    public ResponseEntity<?> updateProfile(@RequestBody UserResponseDTO userResponseDTO){
+        User userLogged = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return userService.updateUser(userLogged.getId_user(), userResponseDTO);
     }
 
     @GetMapping("/{userId}")

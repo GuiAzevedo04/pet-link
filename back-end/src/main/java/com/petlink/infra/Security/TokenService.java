@@ -14,7 +14,7 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    private String secret = "leogostoso";
+    private String secret = "petlinkAPI";
 
     public String generateToken(User user){
         try{
@@ -27,6 +27,7 @@ public class TokenService {
     }
 
     public String validateToken(String token){
+
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
@@ -41,6 +42,6 @@ public class TokenService {
     }
 
     private Instant genExpirationDate() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+        return LocalDateTime.now().plusHours(10).toInstant(ZoneOffset.of("-03:00"));
     }
 }

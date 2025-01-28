@@ -68,9 +68,13 @@ public class UserService implements UserDetailsService {
             user.setAdress(userDto.getAdress());
         }
 
+        if(userDto.getIdUser() != null){
+            user.setAdress(userDto.getPhone());
+        }
+
         userRepository.save(user);
 
-        return ResponseEntity.status(HttpStatus.OK).body(user);
+        return ResponseEntity.status(HttpStatus.OK).body(new UserResponseDTO(user));
     }
 
     @Override

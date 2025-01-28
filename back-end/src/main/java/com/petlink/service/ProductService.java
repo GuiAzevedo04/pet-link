@@ -65,6 +65,10 @@ public class ProductService {
             product.setImage_link(productDto.getImageLink());
         }
 
+        if(productDto.getAmount() > -1){
+            product.setAmount(productDto.getAmount());
+        }
+
         productRepository.save(product);
 
         return ResponseEntity.status(HttpStatus.OK).body(toDto(product));
@@ -77,6 +81,7 @@ public class ProductService {
         product.setName(entity.getName());
         product.setPrice(entity.getPrice());
         product.setDescription(entity.getDescription());
+        product.setAmount(entity.getAmount());
         product.setImageLink(entity.getImage_link());
 
         return product;
@@ -89,6 +94,7 @@ public class ProductService {
         product.setPrice(dto.getPrice());
         product.setDescription(dto.getDescription());
         product.setImage_link(dto.getImageLink());
+        product.setAmount(dto.getAmount());
         return product;
     }
 }

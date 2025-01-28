@@ -44,6 +44,19 @@ public class SchedulesController {
         return ResponseEntity.ok().body(schedulesService.getSchedules(id));
     }
 
+    @GetMapping("/cliente")
+    public ResponseEntity<?> getScheduleByUser(){
+        User userLogged = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        List<SchedulesResponseDTO> listaSchedule = schedulesService.getSchedulesUser(userLogged);
+
+        if (!listaSchedule.isEmpty()) {
+            SchedulesResponseDTO ultimoSchedule = listaSchedule.get(listaSchedule.size() - 1);
+            return ResponseEntity.ok().body(ultimoSchedule);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("Erro", "Nao há agendamentos para esse usuario"));
+    }
+
     // POST (ADD NEW SCHEDULE)
     @PostMapping
     public ResponseEntity<String> addSchedule(@RequestBody SchedulesResponseDTO schedulesDTO) {

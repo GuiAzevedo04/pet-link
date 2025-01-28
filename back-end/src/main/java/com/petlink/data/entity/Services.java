@@ -16,7 +16,7 @@ import java.util.Set;
 public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_schedules", updatable = false, nullable = false)
+    @Column(name = "id_services", updatable = false, nullable = false)
     private Long idService;
 
     @NotBlank
@@ -29,5 +29,9 @@ public class Services {
 
     @Column(nullable = false, name = "price")
     private Float price;
+
+    @OneToMany(mappedBy = "idSchedule", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Schedules> schedules;
 
 }
