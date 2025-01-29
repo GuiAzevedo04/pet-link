@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Box, TextField, Button } from '@mui/material';
+import { Modal, Box, TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 
 const PopUpAdm = ({
   modalAberto,
@@ -10,11 +10,16 @@ const PopUpAdm = ({
   handleAdicionarProduto,
   handleEditarProduto,
   handleDeletarProduto,
+  horarioSelecionado,
+  handleDeletarHorario,
+  handleEditarHorario,
 }) => {
 
   const [produtoEditado, setProdutoEditado] = useState(produtoSelecionado);
+  const [horarioEditado, setHorarioEditado] = useState(horarioSelecionado);
 
   useEffect(() => {
+    setHorarioEditado(horarioSelecionado);
     if(modalAberto === 'editar' && produtoSelecionado){
       setProdutoEditado({...produtoSelecionado});
     }
@@ -23,6 +28,11 @@ const PopUpAdm = ({
   const handleEditarCampo = (e) => {
     const { name, value } = e.target;
     setProdutoEditado((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleEditarCampoHorario = (e) => {
+    const { name, value } = e.target;
+    setHorarioEditado((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -75,6 +85,15 @@ const PopUpAdm = ({
               label="Quantidade"
               name="amount"
               value={novoProduto.amount}
+              onChange={handleChange}
+              margin="normal"
+              sx={{ bgcolor: 'white' }}
+            />
+            <TextField
+              fullWidth
+              label="Descrição"
+              name="description"
+              value={novoProduto.description}
               onChange={handleChange}
               margin="normal"
               sx={{ bgcolor: 'white' }}
@@ -157,6 +176,67 @@ const PopUpAdm = ({
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
               <Button onClick={handleFecharModal} style={{ marginRight: 8 }} sx={{ bgcolor: 'gray', color: 'white' }}>Cancelar</Button>
               <Button variant="contained" color="error" onClick={() => handleDeletarProduto(produtoSelecionado.id)}>Deletar</Button>
+            </div>
+          </Box>
+        </Modal>
+      )}
+
+        {/* Modal para Editar Horário */}
+        {modalAberto === 'editarHorario' && horarioSelecionado && (
+        <Modal open={true} onClose={handleFecharModal}>
+          <Box sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 400,
+            bgcolor: '#D2FD46',
+            boxShadow: 24,
+            p: 4,
+            borderRadius: 2,
+          }}>
+            <h2>Editar Agendamento</h2>
+            <FormControl fullWidth sx={{ bgcolor: 'white', mt: 2 }}>
+              <InputLabel>Status do agendamento</InputLabel>
+              <Select
+                fullWidth
+                name="status"
+                value={horarioEditado?.status || ''}
+                onChange={handleEditarCampoHorario}
+                sx={{ bgcolor: 'white' }}
+              >
+                <MenuItem value="Pendente">Pendente</MenuItem>
+                <MenuItem value="Concluido">Concluido</MenuItem>
+                <MenuItem value="Cancelado">Cancelado</MenuItem>
+            </Select>
+            </FormControl>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
+              <Button onClick={handleFecharModal} style={{ marginRight: 8 }} sx={{ bgcolor: 'red', color: 'white' }}>Cancelar</Button>
+              <Button variant="contained" color="primary" onClick={() => handleEditarHorario(horarioEditado)} sx={{ bgcolor: 'black' }}>Salvar</Button>
+            </div>
+          </Box>
+        </Modal>
+      )}
+
+      {/* Modal para Deletar Horário */}
+      {modalAberto === 'deletarHorario' && horarioSelecionado && (
+        <Modal open={true} onClose={handleFecharModal}>
+          <Box sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 400,
+            bgcolor: '#f8d7da',
+            boxShadow: 24,
+            p: 4,
+            borderRadius: 2,
+          }}>
+            <h2>Deletar Agendamento</h2>
+            <p>Tem certeza que deseja deletar o agendamento</p>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
+              <Button onClick={handleFecharModal} style={{ marginRight: 8 }} sx={{ bgcolor: 'gray', color: 'white' }}>Cancelar</Button>
+              <Button variant="contained" color="error" onClick={() => handleDeletarHorario(horarioSelecionado.idSchedules)}>Deletar</Button>
             </div>
           </Box>
         </Modal>

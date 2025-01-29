@@ -18,7 +18,9 @@ const AdminPage = () => {
     price: '',
     imageLink: '',
     amount: '',
+    description: '',
   });
+  const [horarioSelecionado, setHorarioSelecionado] = useState(null);
 
   const fetchAdmin = async () => {
     try {
@@ -36,9 +38,7 @@ const AdminPage = () => {
     }
   }; 
 
-    if (user != 'ADMIN' ) {
-    return <h1>Você não tem permissão para acessar esta página.</h1>;
-  }
+
 
   useEffect(() => {
     const fetchProdutos = async () => {
@@ -64,10 +64,17 @@ const AdminPage = () => {
         setLoading(false);
       }
     };
-
     fetchProdutos();
     fetchAdmin();
   }, []);
+
+  if (loading) {
+    return <p className='tela-carregamento'>Carregando...</p>;
+  }
+
+  if (user != 'ADMIN' ) {
+    return <h1 className='erro-permissao'>Você não tem permissão para acessar esta página.</h1>;
+  }
 
   const handleChange = (e) => {
     setNovoProduto({ ...novoProduto, [e.target.name]: e.target.value });
@@ -81,7 +88,7 @@ const AdminPage = () => {
         },
       });
       setProdutos([...produtos, response.data]);
-      setNovoProduto({ name: '', price: '', imageLink: '' });
+      setNovoProduto({ name: '', price: '', imageLink: '', description: '', amount: '' });
       handleFecharModal();
     } catch (err) {
       console.error('Erro ao adicionar o produto:', err);
@@ -115,6 +122,35 @@ const AdminPage = () => {
     }
   };
 
+  const handleEditarHorario = async (horario) => {
+    try{
+      const horarioSanitizado = {
+        description: horario.description,
+        status: horario.status,
+        petName: horario.petName,
+        scheduleDate: horario.scheduleDate,
+        serviceName: horario.serviceName,
+        timeOfSchedule: horario.timeOfSchedule,
+      };
+
+      const response = await axios.put(`/api/agendamentos/${horario.idSchedules}`,horarioSanitizado,{
+        headers: {
+          "skip_zrok_interstitial": "true",
+        },
+      });
+
+      setHorarios((prevHorarios) =>
+        prevHorarios.map((p) =>
+          p.idSchedules === horario.idSchedules ? { ...p, ...horarioSanitizado } : p
+        )
+      );
+
+      handleFecharModal();
+    } catch (err) {
+      console.error('Erro ao editar o horário:', err)
+    }
+  };
+
   const handleDeletarProduto = async (id) => {
     try{
       const response = await axios.delete(`/api/produto/${id}`,{
@@ -133,19 +169,36 @@ const AdminPage = () => {
     }
   };
 
+  const handleDeletarHorario = async (id) => {
+    try{
+      console.log("id do horario", id)
+      const response = await axios.delete(`/api/agendamentos/${id}`,{
+        headers: {
+          "skip_zrok_interstitial": "true",
+        },
+      });
+      setHorarios((prevHorarios) =>
+        prevHorarios.filter((horario) => horario.idSchedules !== id)
+      )
+
+      handleFecharModal();
+    } catch (err) {
+      console.error("Erro ao excluir o horário: ", err)
+    }
+  }
+
   const handleAbrirModal = (tipo, produto = null) => {
     setModalAberto(tipo);
     setProdutoSelecionado(produto);
+  };
+  const handleAbrirModalHorario = (tipo, horario = null) => {
+    setModalAberto(tipo);
+    setHorarioSelecionado(horario);
   };
   const handleFecharModal = () => {
     setModalAberto(null);
     setProdutoSelecionado(null);
   };
-
-
-  if (loading) {
-    return <p className='tela-carregamento'>Carregando...</p>;
-  }
 
   return (
     <div className='adm-page'>
@@ -185,8 +238,8 @@ const AdminPage = () => {
                 <div >
                   <p>{horario.petName}</p>
                   <div className='edit-delete-agenda'>
-                    <a href="#" onClick={() => handleAbrirModal('editar', produto)}><EditIcon /></a>
-                    <a href="#" onClick={() => handleAbrirModal('deletar', produto)}><DeleteIcon /></a>
+                    <a href="#" onClick={() => handleAbrirModalHorario('editarHorario', horario)}><EditIcon /></a>
+                    <a href="#" onClick={() => handleAbrirModalHorario('deletarHorario', horario)}><DeleteIcon /></a>
                   </div>
     
                 </div>
@@ -205,6 +258,9 @@ const AdminPage = () => {
         handleAdicionarProduto={handleAdicionarProduto}
         handleEditarProduto={handleEditarProduto}
         handleDeletarProduto={handleDeletarProduto}
+        horarioSelecionado = {horarioSelecionado}
+        handleDeletarHorario = {handleDeletarHorario}
+        handleEditarHorario={handleEditarHorario}
       />
 
     </div>
