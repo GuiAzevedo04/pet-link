@@ -34,16 +34,16 @@ class ProductServiceTest {
         MockitoAnnotations.openMocks(this);
 
         // Produto existente (simulando banco)
-        product = new Product(1L, "Comida de Cachorro", "Comida de cachorro premium", 20.0, 10, "image_link");
+        product = new Product(1L, "Comida de Cachorro", "Comida de cachorro premium", 20.0, 10, "link_da_imagem");
 
         // ProductDTO sem o id (como em um request)
-        productDTO = new ProductResponseDTO(null, "Comida de Cachorro", 20.0, "Comida de cachorro premium", 10, "image_link");
+        productDTO = new ProductResponseDTO(null, "Comida de Cachorro", 20.0, "Comida de cachorro premium", 10, "link_da_imagem");
     }
 
     @Test
     void testCreateProduct() {
         // Simulando salvar o produto
-        Product savedProduct = new Product(1L, "Comida de Cachorro", "Comida de cachorro premium", 20.0, 10, "image_link");
+        Product savedProduct = new Product(1L, "Comida de Cachorro", "Comida de cachorro premium", 20.0, 10, "link_da_imagem");
 
         when(productRepository.save(any(Product.class))).thenReturn(savedProduct);
 
@@ -64,7 +64,7 @@ class ProductServiceTest {
         when(productRepository.save(any(Product.class))).thenReturn(product);
 
         // Criando um DTO de Produto como em um request
-        ProductResponseDTO updatedDTO = new ProductResponseDTO(null, "Comida de Gato", 25.0, "Comida de gato premium", 5, "new_image_link");
+        ProductResponseDTO updatedDTO = new ProductResponseDTO(null, "Comida de Gato", 25.0, "Comida de gato premium", 5, "novo_link_da_imagem");
         // Atualizando Produto
         ResponseEntity<?> response = productService.updateProduct(1L, updatedDTO);
 
@@ -74,7 +74,7 @@ class ProductServiceTest {
         assertEquals("Comida de Gato", updatedProduct.getName());
         assertEquals(25.0, updatedProduct.getPrice());
         assertEquals("Comida de gato premium", updatedProduct.getDescription());
-        assertEquals("new_image_link", updatedProduct.getImageLink());
+        assertEquals("novo_link_da_imagem", updatedProduct.getImageLink());
         assertEquals(5, updatedProduct.getAmount());
 
         // Verificando
