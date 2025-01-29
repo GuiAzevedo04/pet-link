@@ -33,16 +33,16 @@ class ProductServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        // Existing product (simulating DB data)
+        // Produto existente (simulando banco)
         product = new Product(1L, "Comida de Cachorro", "Comida de cachorro premium", 20.0, 10, "image_link");
 
-        // DTO without ID (mimicking creation request)
+        // ProductDTO sem o id (como em um request)
         productDTO = new ProductResponseDTO(null, "Comida de Cachorro", 20.0, "Comida de cachorro premium", 10, "image_link");
     }
 
     @Test
     void testCreateProduct() {
-        // Simulating that saving assigns an ID
+        // Simulando salvar o produto
         Product savedProduct = new Product(1L, "Comida de Cachorro", "Comida de cachorro premium", 20.0, 10, "image_link");
 
         when(productRepository.save(any(Product.class))).thenReturn(savedProduct);
@@ -50,20 +50,25 @@ class ProductServiceTest {
         ProductResponseDTO createdProduct = productService.createProduct(productDTO);
 
         assertNotNull(createdProduct);
-        assertNotNull(createdProduct.getId()); // ID must be generated
+        assertNotNull(createdProduct.getId());
         assertEquals("Comida de Cachorro", createdProduct.getName());
 
+        // Verificando se foi criado
         verify(productRepository, times(1)).save(any(Product.class));
     }
 
     @Test
     void testUpdateProduct() {
+        // Encontrando produto
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         when(productRepository.save(any(Product.class))).thenReturn(product);
 
+        // Criando um DTO de Produto como em um request
         ProductResponseDTO updatedDTO = new ProductResponseDTO(null, "Comida de Gato", 25.0, "Comida de gato premium", 5, "new_image_link");
+        // Atualizando Produto
         ResponseEntity<?> response = productService.updateProduct(1L, updatedDTO);
 
+        // Testando update
         ProductResponseDTO updatedProduct = (ProductResponseDTO) response.getBody();
         assertNotNull(updatedProduct);
         assertEquals("Comida de Gato", updatedProduct.getName());
@@ -72,23 +77,29 @@ class ProductServiceTest {
         assertEquals("new_image_link", updatedProduct.getImageLink());
         assertEquals(5, updatedProduct.getAmount());
 
+        // Verificando
         verify(productRepository, times(1)).findById(1L);
         verify(productRepository, times(1)).save(any(Product.class));
     }
 
     @Test
     void testDeleteProduct() {
+
+        // Achando produto no banco de dados
         when(productRepository.existsById(1L)).thenReturn(true);
         doNothing().when(productRepository).deleteById(1L);
 
+        // Apagando produto
         assertDoesNotThrow(() -> productService.deleteProduct(1L));
 
+        // Verificando
         verify(productRepository, times(1)).existsById(1L);
         verify(productRepository, times(1)).deleteById(1L);
     }
 
     @Test
     void testDeleteProduct_NotFound() {
+
         when(productRepository.existsById(1L)).thenReturn(false);
 
         Exception exception = assertThrows(RuntimeException.class, () -> productService.deleteProduct(1L));
