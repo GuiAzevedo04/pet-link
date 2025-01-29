@@ -41,7 +41,9 @@ PostgreSQL - v17.2
 
 ```
 .
-├── Padroes Adotados/       (Documentaçãoe e especificações do projeto)
+├── Docs/       (Documentaçãoe e especificações do projeto)
+│   ├── Padrões Adotados/ (Padrões que foram adotados no desenvolvimento)
+│   └── Testes/    (Padronização dos testes)
 ├── back-end/               (Back-end do projeto)
 │   └── src/
 │       └── main/
