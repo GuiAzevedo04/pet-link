@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PetLinkLogo from '../../assets/PetLinkLogo.png';
 import './Header.css';
-import { Modal, Box, TextField, Button, Typography } from '@mui/material';
+import { Modal, Box, TextField, Button, Typography, Snackbar, Alert } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SaveIcon from '@mui/icons-material/Save';
 import axios from 'axios';
 
 const Header = () => {
+  const [error, setError] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState({
@@ -59,7 +60,7 @@ const Header = () => {
       fetchUserName(response.data.token);
       handleClose();
     } catch (err) {
-      console.error("Erro ao fazer o login:", err);
+        setError(true)
     }
   };
 
@@ -104,6 +105,9 @@ const Header = () => {
     }));
   };
 
+  const handleCloseError = () => {
+    setError(false); // Fecha o Snackbar
+  };
 
   return (
     <>
@@ -234,6 +238,17 @@ const Header = () => {
           )}
         </Box>
       </Modal>
+
+      <Snackbar
+        open={error}
+        autoHideDuration={3000} // Fecha automaticamente após 3 segundos
+        onClose={handleCloseError}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }} // Posição no canto superior
+      >
+        <Alert onClose={handleCloseError} variant='filled' severity="error" sx={{ width: '100%' }}>
+          E-mail e/ou Senha não conferem
+        </Alert>
+      </Snackbar>
     </>
   );
 };
