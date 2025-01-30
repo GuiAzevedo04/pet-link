@@ -100,7 +100,7 @@ const PopUpAdm = ({
             />
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
               <Button onClick={handleFecharModal} style={{ marginRight: 8 }} sx={{ bgcolor: 'red', color: 'white' }}>Cancelar</Button>
-              <Button variant="contained" color="primary" onClick={handleAdicionarProduto} sx={{ bgcolor: 'black' }}>Adicionar</Button>
+              <Button data-cy="adicionar-produto-confirma" variant="contained" color="primary" onClick={handleAdicionarProduto} sx={{ bgcolor: 'black' }}>Adicionar</Button>
             </div>
           </Box>
         </Modal>
@@ -142,6 +142,15 @@ const PopUpAdm = ({
             />
             <TextField
               fullWidth
+              label="Descrição do Produto"
+              name="description"
+              value={produtoEditado?.description || ''}
+              onChange={handleEditarCampo}
+              margin="normal"
+              sx={{ bgcolor: 'white' }}
+            />
+            <TextField
+              fullWidth
               label="Link da Imagem"
               name="imageLink"
               value={produtoEditado?.imageLink || ''}
@@ -151,7 +160,7 @@ const PopUpAdm = ({
             />
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
               <Button onClick={handleFecharModal} style={{ marginRight: 8 }} sx={{ bgcolor: 'red', color: 'white' }}>Cancelar</Button>
-              <Button variant="contained" color="primary" onClick={() => handleEditarProduto(produtoEditado)} sx={{ bgcolor: 'black' }}>Salvar</Button>
+              <Button variant="contained" color="primary" onClick={() => handleEditarProduto(produtoEditado)} sx={{ bgcolor: 'black' }} data-cy="salvar-produto-editado">Salvar</Button>
             </div>
           </Box>
         </Modal>
@@ -175,7 +184,7 @@ const PopUpAdm = ({
             <p>Tem certeza que deseja deletar o produto <strong>{produtoSelecionado.name}</strong>?</p>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
               <Button onClick={handleFecharModal} style={{ marginRight: 8 }} sx={{ bgcolor: 'gray', color: 'white' }}>Cancelar</Button>
-              <Button variant="contained" color="error" onClick={() => handleDeletarProduto(produtoSelecionado.id)}>Deletar</Button>
+              <Button variant="contained" color="error" onClick={() => handleDeletarProduto(produtoSelecionado.id)} data-cy="apagar-produto-confirma">Deletar</Button>
             </div>
           </Box>
         </Modal>
@@ -212,7 +221,7 @@ const PopUpAdm = ({
             </FormControl>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
               <Button onClick={handleFecharModal} style={{ marginRight: 8 }} sx={{ bgcolor: 'red', color: 'white' }}>Cancelar</Button>
-              <Button variant="contained" color="primary" onClick={() => handleEditarHorario(horarioEditado)} sx={{ bgcolor: 'black' }}>Salvar</Button>
+              <Button variant="contained" color="primary" onClick={() => handleEditarHorario(horarioEditado)} sx={{ bgcolor: 'black' }} data-cy="salvar-horario">Salvar</Button>
             </div>
           </Box>
         </Modal>
@@ -236,7 +245,7 @@ const PopUpAdm = ({
             <p>Tem certeza que deseja deletar o agendamento</p>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
               <Button onClick={handleFecharModal} style={{ marginRight: 8 }} sx={{ bgcolor: 'gray', color: 'white' }}>Cancelar</Button>
-              <Button variant="contained" color="error" onClick={() => handleDeletarHorario(horarioSelecionado.idSchedules)}>Deletar</Button>
+              <Button variant="contained" color="error" onClick={() => handleDeletarHorario(horarioSelecionado.idSchedules)} data-cy="deletar-horario-confirma">Deletar</Button>
             </div>
           </Box>
         </Modal>

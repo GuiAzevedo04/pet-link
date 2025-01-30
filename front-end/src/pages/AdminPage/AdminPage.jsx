@@ -217,7 +217,7 @@ const AdminPage = () => {
         <h1>Admin</h1>
         <div className='cabecalho-produtos-adm'>
           <h2>Produtos:</h2>
-          <button onClick={() => handleAbrirModal('adicionar')}>Adicionar Produto</button>
+          <button onClick={() => handleAbrirModal('adicionar')} data-cy="adicionar-produto">Adicionar Produto</button>
         </div>
         <div className='produtos-grid-adm'>
           {produtos.map((produto) => (
@@ -229,8 +229,8 @@ const AdminPage = () => {
                   <p>{`R$${produto.price}`}</p>
                 </div>
                 <div className='opcoes-produto-adm'>
-                  <a href="#" onClick={() => handleAbrirModal('editar', produto)}><EditIcon /></a>
-                  <a href="#" onClick={() => handleAbrirModal('deletar', produto)}><DeleteIcon /></a>
+                  <a href="#" onClick={() => handleAbrirModal('editar', produto)} data-cy="editar-produto"><EditIcon /></a>
+                  <a href="#" onClick={() => handleAbrirModal('deletar', produto)} data-cy="apagar-produto"><DeleteIcon /></a>
                 </div>
               </div>
             </div>
@@ -249,8 +249,8 @@ const AdminPage = () => {
                 <div >
                   <p>{horario.petName}</p>
                   <div className='edit-delete-agenda'>
-                    <a href="#" onClick={() => handleAbrirModalHorario('editarHorario', horario)}><EditIcon /></a>
-                    <a href="#" onClick={() => handleAbrirModalHorario('deletarHorario', horario)}><DeleteIcon /></a>
+                    <a href="#" onClick={() => handleAbrirModalHorario('editarHorario', horario)} data-cy="editar-horario"><EditIcon /></a>
+                    <a href="#" onClick={() => handleAbrirModalHorario('deletarHorario', horario)}data-cy="deletar-horario"><DeleteIcon /></a>
                   </div>
     
                 </div>

@@ -59,6 +59,7 @@ const Header = () => {
       localStorage.setItem('authToken', response.data.token);
       fetchUserName(response.data.token);
       handleClose();
+      window.location.reload()
     } catch (err) {
         setError(true)
     }
@@ -240,6 +241,7 @@ const Header = () => {
                   marginTop: "2%",
                 }}
                 onClick={fetchLogin}
+                data-cy="button-login"
               >
                 Login
               </Button>

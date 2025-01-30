@@ -87,6 +87,7 @@ const FormAgendamento = () => {
         <label htmlFor="scheduleDate">Escolha a data:</label>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
+            name="datateste"
             value={selectedDate}
             onChange={(newValue) => fetchDay(newValue)}
             shouldDisableDate={shouldDisableDate} 
@@ -123,7 +124,7 @@ const FormAgendamento = () => {
             Tosa (R$ 30.00)
           </label>
         </div>
-        <button type='submit'>Agendar</button>
+        <button type='submit' data-cy="agendar">Agendar</button>
       </form>
     </div>
   );
