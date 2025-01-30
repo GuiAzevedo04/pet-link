@@ -13,7 +13,7 @@
 .grid-carrinho {
     display: grid;
     grid-template-columns: 1fr; /* Cada linha com apenas um produto */
-    gap: 20px; /* Espaço entre os produtos */
+    gap: 20px; /* EspaÃ§o entre os produtos */
     width: 100%;
   }
 
@@ -64,3 +64,8 @@
     height: 100%;
 }
 
+ .carrinho-page .agenda-adm{
+    width: 80%;
+    overflow-y: hidden;
+    height: 100%;
+}
