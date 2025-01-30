@@ -4,7 +4,10 @@ public enum UserRole {
 
     ADMIN("admin"),
 
+    EMPLOYEE("employee"),
+
     USER("user");
+
 
     private String role;
 
