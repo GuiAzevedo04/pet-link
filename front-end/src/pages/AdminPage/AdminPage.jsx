@@ -72,7 +72,7 @@ const AdminPage = () => {
     return <p className='tela-carregamento'>Carregando...</p>;
   }
 
-  if (user != 'ADMIN' || user != 'EMPLOYEE') {
+  if (user == 'USER' || user == null) {
     return <h1 className='erro-permissao'>Você não tem permissão para acessar esta página.</h1>;
   }
 
@@ -82,9 +82,11 @@ const AdminPage = () => {
 
   const handleAdicionarProduto = async () => {
     try {
+      const token = localStorage.getItem('authToken')
       const response = await axios.post('/api/produto/create', novoProduto, {
         headers: {
           "skip_zrok_interstitial": "true",
+          "Authorization": `Bearer ${token}`,
         },
       });
       setProdutos([...produtos, response.data]);
@@ -103,10 +105,13 @@ const AdminPage = () => {
         price: produto.price,
         imageLink: produto.imageLink,
       };
+      const token = localStorage.getItem('authToken')
 
       const response = await axios.put(`/api/produto/${produto.id}`,produtoSanitizado,{
+      
         headers: {
           "skip_zrok_interstitial": "true",
+          "Authorization": `Bearer ${token}`,
         },
       });
 
@@ -132,10 +137,12 @@ const AdminPage = () => {
         serviceName: horario.serviceName,
         timeOfSchedule: horario.timeOfSchedule,
       };
+      const token = localStorage.getItem('authToken')
 
       const response = await axios.put(`/api/agendamentos/${horario.idSchedules}`,horarioSanitizado,{
         headers: {
           "skip_zrok_interstitial": "true",
+          "Authorization": `Bearer ${token}`,
         },
       });
 
@@ -153,9 +160,11 @@ const AdminPage = () => {
 
   const handleDeletarProduto = async (id) => {
     try{
+      const token = localStorage.getItem('authToken')
       const response = await axios.delete(`/api/produto/${id}`,{
         headers: {
           "skip_zrok_interstitial": "true",
+          "Authorization": `Bearer ${token}`,
         },
       });
 
@@ -171,10 +180,12 @@ const AdminPage = () => {
 
   const handleDeletarHorario = async (id) => {
     try{
+      const token = localStorage.getItem('authToken');
       console.log("id do horario", id)
       const response = await axios.delete(`/api/agendamentos/${id}`,{
         headers: {
           "skip_zrok_interstitial": "true",
+          "Authorization": `Bearer ${token}`,
         },
       });
       setHorarios((prevHorarios) =>
