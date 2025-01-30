@@ -105,6 +105,15 @@ const Header = () => {
     }));
   };
 
+  const handleChangeEdit = (e) => {
+    const { name, value } = e.target;
+    setName((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+
   const handleCloseError = () => {
     setError(false); // Fecha o Snackbar
   };
@@ -147,7 +156,7 @@ const Header = () => {
                 name="name"
                 margin="normal"
                 value={name.name}
-                onChange={handleChange}
+                onChange={handleChangeEdit}
                 disabled={!isEditing}
               />
               <TextField
@@ -156,7 +165,7 @@ const Header = () => {
                 name="email"
                 margin="normal"
                 value={name.email}
-                onChange={handleChange}
+                onChange={handleChangeEdit}
                 disabled={!isEditing}
               />
               <TextField
@@ -165,7 +174,7 @@ const Header = () => {
                 name="phone"
                 margin="normal"
                 value={name.phone}
-                onChange={handleChange}
+                onChange={handleChangeEdit}
                 disabled={!isEditing}
               />
               <TextField
@@ -174,7 +183,7 @@ const Header = () => {
                 name="adress"
                 margin="normal"
                 value={name.adress}
-                onChange={handleChange}
+                onChange={handleChangeEdit}
                 disabled={!isEditing}
               />
               <Button
