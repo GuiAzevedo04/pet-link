@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import './ProdutosDetalhes.css'
+import { motion } from "framer-motion";
 
 const ProdutosDetalhes = () => {
     const {id} = useParams();
@@ -44,17 +45,27 @@ const ProdutosDetalhes = () => {
         return <p className='tela-carregamento'>Carregando...</p>
     }
 
-  return (
-    <div className="produto-detalhes">
-      <img src={produto.imageLink} alt={produto.name} />
-      <div className='info-produto-compra'>
-        <h1>{produto.name}</h1>
-        <p id='preco-produto-detalhes'> R$ {produto.price}</p>
-        <p>{produto.description}</p>
-        <button onClick={fetchAddProduto}>Adicionar ao carrinho</button>
+
+
+    return (
+      <div className="produto-detalhes">
+        <img src={produto.imageLink} alt={produto.name} />
+        <div className="info-produto-compra">
+          <h1>{produto.name}</h1>
+          <p id="preco-produto-detalhes"> R$ {produto.price}</p>
+          <p>{produto.description}</p>
+          <motion.button
+            onClick={fetchAddProduto}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="botao-adicionar"
+          >
+            Adicionar ao carrinho
+          </motion.button>
+        </div>
       </div>
-    </div>
-  )
+    );    
 }
 
 export default ProdutosDetalhes

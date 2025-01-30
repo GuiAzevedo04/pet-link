@@ -49,6 +49,22 @@
     cursor: pointer;
 }
 
+.botao-adicionar {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .botao-adicionar:hover {
+    background-color: #e65c00;
+  }
+  
+
 #preco-produto-detalhes{
     font-size: 1.7em;
     font-weight: 400;
