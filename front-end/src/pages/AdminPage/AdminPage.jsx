@@ -72,7 +72,7 @@ const AdminPage = () => {
     return <p className='tela-carregamento'>Carregando...</p>;
   }
 
-  if (user != 'ADMIN' ) {
+  if (user != 'ADMIN' || user != 'EMPLOYEE') {
     return <h1 className='erro-permissao'>Você não tem permissão para acessar esta página.</h1>;
   }
 
