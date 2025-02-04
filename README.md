@@ -1,4 +1,15 @@
-# Descricao do Problema
+![Logo do PetShop](https://github.com/user-attachments/assets/d699a805-d9a9-4d80-89bb-5dc622a0c773)
+
+## Índice
+- [Descrição do Problema](#descrição-do-problema)
+- [Descrição da Solução](#descrição-da-solução)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+- [Regras e Padrões de Uso do Git](#-regras-e-padrões-de-uso-do-git)
+- [Regras e Boas Práticas de Codificação](#regras-e-boas-práticas-de-codificação)
+- [Autores](#autores)
+
+# Descrição do Problema
 
 Nosso petshop estava enfrentando dificuldades com o agendamento de horários para
 banho e tosa. Com o uso de uma agenda física, frequentemente cometíamos erros, 
@@ -41,9 +52,9 @@ PostgreSQL - v17.2
 
 ```
 .
-├── Docs/       (Documentaçãoe e especificações do projeto)
-│   ├── Padrões Adotados/ (Padrões que foram adotados no desenvolvimento)
-│   └── Testes/    (Padronização dos testes)
+├── Docs/                   (Documentaçãoe e especificações do projeto)
+│   ├── Padrões Adotados/   (Padrões que foram adotados no desenvolvimento)
+│   └── Testes/             (Padronização dos testes)
 ├── back-end/               (Back-end do projeto)
 │   └── src/
 │       └── main/
@@ -95,4 +106,46 @@ Os commits devem utilizar um padrão objetivo e direto, deixando a linha do temp
   - Conclusão de testes com todas funcionalidades 
   - Verificação da corretude das funcionalidades desenvolvidas.  
 - Evite merges diretos na `main`. Utilize pull requests
+
+
+## Regras e Boas Práticas de Codificação
+- O código deve ser de fácil entendimento:
+   - Nomear classes, métodos e variáveis de maneira que não seja necessário se aprofundar no código para o entedimento.
+   - Identar o código corretamente.
+   - Utilizar a convenção de nomenclatura Camel Case em classes, métodos e variáveis.
+   - Organizar o código de uma maneira lógica, com funções relacionadas agrupadas e conceitos relacionados próximos uns dos outros.
+- O código deve ser direto:
+   - Evitar o uso de linguagem rebuscada.
+   - Fazer uso de bibliotecas e métodos que otimizem o código.
+- O código deve não conter duplicidade:
+   - Seguir o planejamento de classes, respeitando a divisão de funcionalidades.
+   - Utilizar práticas como sobrecarga de métodos, interfaces e outras técnicas que possam ser suportados pela linguagem para evitar repetição de código.
+
+## 👥 Autores
+
+  <table align="center">
+  <tr align="center">
+    <td align="center">
+      <a href="https://github.com/GuiAzevedo04">
+        <img src="https://github.com/GuiAzevedo04.png" width="100px;" alt="Guilherme"/>
+        <br/>
+        <sub><b>Guilherme Luiz de Azevedo</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/leommelo">
+        <img src="https://github.com/leommelo.png" width="100px;" alt="Leonardo"/>
+        <br/>
+        <sub><b>Leonardo Marques de Melo</b></sub>
+      </a>
+    </td>
+      <td align="center">
+      <a href="https://github.com/MateusMendes0">
+        <img src="https://github.com/MateusMendes0.png" width="100px;" alt="Leonardo"/>
+        <br/>
+        <sub><b>Mateus Mendes da Silva</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
